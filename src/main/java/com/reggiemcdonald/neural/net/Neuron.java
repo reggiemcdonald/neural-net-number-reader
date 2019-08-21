@@ -1,17 +1,42 @@
 package com.reggiemcdonald.neural.net;
 
-import org.nd4j.linalg.api.ndarray.INDArray;
-
 public interface Neuron {
 
     /**
      * @return the last outputted value of this
      */
-    float getOutput ();
+    float getOutputtingSignal ();
 
     /**
-     * Propogate the signal across the network
-     * @param inputs: An INDArray of inputs
+     * Sets
      */
-    void  propogate (INDArray inputs);
+    Neuron setOutputtingSignal (float signal);
+
+
+    /**
+     * Updates the synapses this is incident on
+     */
+    void propagate ();
+
+    /**
+     * Returns the bias of this
+     * @return
+     */
+    float getBias ();
+
+    /**
+     * Connects a neuron to this
+     * @param s
+     * @return this
+     */
+    Neuron addSynapseOntoThis (Synapse s);
+
+    /**
+     * Connects this to a neuron
+     * @param s
+     * @return this
+     */
+    Neuron addSynapseFromThis (Synapse s);
+
+
 }

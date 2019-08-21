@@ -8,53 +8,58 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class SigmoidNeuron implements Neuron  {
+public class OutputNeuron implements Neuron {
+    List<Synapse> receiving;
+    float outputtingSignal, bias;
 
-    private float outputtingSignal;
-    private List<Synapse> receiving, sending;
-    private float bias;
-
-    public SigmoidNeuron () {
-        Random r  = new Random ();
-        bias      = (float) r.nextGaussian();
+    public OutputNeuron () {
+        Random r = new Random();
         receiving = new ArrayList<> ();
-        sending   = new ArrayList<> ();
+        outputtingSignal = (float) r.nextGaussian();
+        bias = 1;
     }
+
     @Override
-    public float getOutputtingSignal () {
+    public float getOutputtingSignal() {
         return outputtingSignal;
     }
 
     @Override
-    public Neuron setOutputtingSignal (float signal) {
-        this.outputtingSignal = signal;
+    public Neuron setOutputtingSignal(float signal) {
+        outputtingSignal = signal;
         return this;
     }
 
-    @Override
-    public void propagate () {
-        if (!allHaveUpdated ()) return;
-        System.out.println("Propagating sigmoid");
-        // Integrate signals and set as output
-        setOutputtingSignal (sigmoid());
+    public float sigmoid() {
+        INDArray nd = Transforms.sigmoid (
+                getWeights ()
+                        .mmul(getInputs())
+                        .add (bias)
 
+        );
+        return nd.getFloat(new int[]{0,0});
+    }
+
+    @Override
+    public void propagate() {
+        if (!allHaveUpdated()) {
+            System.out.println("Not all have updated");
+            return;
+        }
+        System.out.println("Propagating");
+        setOutputtingSignal(sigmoid());
         for (Synapse s : receiving)
             s.setUpdated(false);
-
-        // Propogate down the network
-        for (Synapse s : sending) {
-            s.setUpdated(true);
-            s.getReceivingNeuron().propagate();
-        }
+        System.out.println("After " + getInputs());
     }
 
     @Override
-    public float getBias () {
-        return bias;
+    public float getBias() {
+        return 0;
     }
 
     @Override
-    public Neuron addSynapseOntoThis (Synapse s) {
+    public Neuron addSynapseOntoThis(Synapse s) {
         if (!receiving.contains(s)) {
             receiving.add (s);
             s.getSendingNeuron().addSynapseFromThis(s);
@@ -63,23 +68,8 @@ public class SigmoidNeuron implements Neuron  {
     }
 
     @Override
-    public Neuron addSynapseFromThis (Synapse s) {
-        if (!sending.contains(s)) {
-            sending.add (s);
-            s.getReceivingNeuron().addSynapseOntoThis(s);
-        }
+    public Neuron addSynapseFromThis(Synapse s) {
         return this;
-    }
-
-    public float sigmoid () {
-        INDArray nd = Transforms.sigmoid (
-                getWeights ()
-                        .mmul(getInputs())
-                        .add (bias)
-
-        );
-//        System.out.println(nd);
-        return nd.getFloat(new int[]{0,0});
     }
 
     // Create a row vector of weights
@@ -108,5 +98,4 @@ public class SigmoidNeuron implements Neuron  {
             hasUpdated =  hasUpdated && s.isUpdated();
         return hasUpdated;
     }
-
 }
