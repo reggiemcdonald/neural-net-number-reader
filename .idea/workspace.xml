@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b835272f-9624-40ae-8c02-285edabccfde" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Neuron.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/SigmoidNeuron.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/reggiemcdonald/neural/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/reggiemcdonald/neural/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/reggiemcdonald/neural/net/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/reggiemcdonald/neural/net/Network.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -45,12 +40,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2189" />
+          <entry key="txt" value="36" />
           <entry key="xml" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2189" />
+          <entry key="PLAIN_TEXT" value="36" />
           <entry key="XML" value="12" />
         </counts>
       </usages-collector>
@@ -58,16 +55,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+            <state relative-caret-position="135">
+              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
@@ -118,10 +115,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Neuron.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/SigmoidNeuron.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/App.java" />
       </list>
     </option>
   </component>
@@ -254,6 +251,14 @@
       <option name="presentableId" value="Default" />
       <updated>1566335245033</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added basic project structure">
+      <created>1566339495715</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566339495715</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -287,18 +292,15 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added basic project structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added basic project structure" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -327,6 +329,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
         </state>
       </provider>
     </entry>
