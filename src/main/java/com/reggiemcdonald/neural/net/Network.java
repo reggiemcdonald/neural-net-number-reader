@@ -1,5 +1,7 @@
 package com.reggiemcdonald.neural.net;
 
+import com.reggiemcdonald.neural.res.NumberImage;
+
 import java.util.*;
 
 public class Network {
@@ -67,5 +69,65 @@ public class Network {
            }
        }
    }
+
+    /**
+     * Perform stochastic gradient descent by means of backwards propagation
+     * @param trainingData A list of NumberImage that contains the image and its true classification
+     * @param epochs The number of rounds of training
+     * @param batchSize The size of each training group
+     * @param rate The learning rate
+     * @param verbose true when progress should be printed to the console
+     */
+   public void learn (List<NumberImage> trainingData, int epochs, int batchSize, int rate, boolean verbose) {
+       // TODO
+
+       // Partition training data into random batches of batchSize
+       Collections.shuffle(trainingData);
+       List<List<NumberImage>> batches = new ArrayList<>();
+       int idx = 0;
+       for (int i = 0; i < trainingData.size() / batchSize; i++) {
+           List<NumberImage> batch = new ArrayList<>(batchSize);
+           for (int j = 0; j < batchSize; j++) {
+               batch.add (trainingData.get (idx));
+               idx++;
+           }
+           batches.add (batch);
+       }
+
+       // Perform small gradient descent epoch times
+       // TODO
+   }
+
+    /**
+     * Perform a SGD for a randomly partitioned training subset
+     * @param batch a randomly partitioned set of trials
+     */
+   private void learn_batch (List<NumberImage> batch) {
+       // TODO
+       // For each of the tests in the batch
+       // 1. Set the input layer
+       // 2. Propagate
+       // 3. Output S^L
+       // 4. Backpropagate
+   }
+
+
+    /**
+     * @return the index of the most activated neuron
+     */
+   public int getResult () {
+       int idx = 0;
+       float max_signal = outputs.get(0).getOutputtingSignal();
+       for (int i = 0; i < outputs.size(); i++) {
+           Neuron n = outputs.get(i);
+           if (max_signal < n.getOutputtingSignal()) {
+               idx = i;
+               max_signal = n.getOutputtingSignal();
+           }
+       }
+       return idx;
+   }
+
+
 
 }
