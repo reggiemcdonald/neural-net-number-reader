@@ -57,4 +57,15 @@ public class Network {
    public List<Neuron> getOutputs () { return this.outputs; }
    public Collection<Collection<Neuron>> getHiddens () { return Collections.unmodifiableCollection(this.hidden); }
 
+   public void input (float[][] input) {
+       if (input.length == 0 || (input.length * input[0].length) != inputs.size())
+           throw new RuntimeException("Invalid input");
+       for (int x = 0; x < input.length; x++) {
+           for (int y = 0; y < input[x].length; y++) {
+               int index = (input[y].length * x) + y;
+               inputs.get(index).setOutputtingSignal(input[x][y]).propagate();
+           }
+       }
+   }
+
 }

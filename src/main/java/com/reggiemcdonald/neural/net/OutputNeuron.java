@@ -42,15 +42,12 @@ public class OutputNeuron implements Neuron {
 
     @Override
     public void propagate() {
-        if (!allHaveUpdated()) {
-            System.out.println("Not all have updated");
-            return;
-        }
-        System.out.println("Propagating");
+        if (!allHaveUpdated()) return;
+
         setOutputtingSignal(sigmoid());
+
         for (Synapse s : receiving)
             s.setUpdated(false);
-        System.out.println("After " + getInputs());
     }
 
     @Override

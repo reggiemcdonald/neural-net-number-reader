@@ -34,7 +34,6 @@ public class SigmoidNeuron implements Neuron  {
     @Override
     public void propagate () {
         if (!allHaveUpdated ()) return;
-        System.out.println("Propagating sigmoid");
         // Integrate signals and set as output
         setOutputtingSignal (sigmoid());
 
