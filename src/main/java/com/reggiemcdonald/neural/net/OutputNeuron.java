@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class OutputNeuron implements Neuron, SigmoidShaped {
     List<Synapse> receiving;
-    float outputtingSignal, bias;
+    float outputtingSignal, bias, biasUpdate = 0f;
 
     public OutputNeuron () {
         Random r = new Random();
@@ -58,7 +58,25 @@ public class OutputNeuron implements Neuron, SigmoidShaped {
 
     @Override
     public float getBias() {
-        return 0;
+        return this.bias;
+    }
+
+    @Override
+    public void setBias (float bias) { this.bias = bias; }
+
+    @Override
+    public void addBiasUpdate(float biasUpdate) {
+        this.biasUpdate += biasUpdate;
+    }
+
+    @Override
+    public float getBiasUpdate () {
+        return this.biasUpdate;
+    }
+
+    @Override
+    public void zeroBiasUpdate () {
+        this.biasUpdate = 0;
     }
 
     @Override
@@ -73,6 +91,16 @@ public class OutputNeuron implements Neuron, SigmoidShaped {
     @Override
     public Neuron addSynapseFromThis(Synapse s) {
         return this;
+    }
+
+    @Override
+    public List<Synapse> getSynapsesOntoThis() {
+        return receiving;
+    }
+
+    @Override
+    public List<Synapse> getSynapsesFromThis() {
+        return new ArrayList<>();
     }
 
     // Create a row vector of weights

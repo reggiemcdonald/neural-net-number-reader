@@ -39,6 +39,26 @@ public class InputNeuron implements Neuron {
     }
 
     @Override
+    public void setBias(float bias) {
+        // Do Nothing
+    }
+
+    @Override
+    public void addBiasUpdate(float biasUpdate) {
+        // Do nothing
+    }
+
+    @Override
+    public float getBiasUpdate () {
+        return 0f;
+    }
+
+    @Override
+    public void zeroBiasUpdate () {
+        // Do Nothing
+    }
+
+    @Override
     public Neuron addSynapseOntoThis(Synapse s) {
         // TODO: Handle this better
         return null;
@@ -51,5 +71,15 @@ public class InputNeuron implements Neuron {
             s.getReceivingNeuron().addSynapseOntoThis(s);
         }
         return this;
+    }
+
+    @Override
+    public List<Synapse> getSynapsesOntoThis() {
+        return null;
+    }
+
+    @Override
+    public List<Synapse> getSynapsesFromThis() {
+        return null;
     }
 }

@@ -80,10 +80,10 @@ public class Network {
      * @param trainingData A list of NumberImage that contains the image and its true classification
      * @param epochs The number of rounds of training
      * @param batchSize The size of each training group
-     * @param rate The learning rate
+     * @param eta The learning rate
      * @param verbose true when progress should be printed to the console
      */
-   public void learn (List<NumberImage> trainingData, int epochs, int batchSize, int rate, boolean verbose) {
+   public void learn (List<NumberImage> trainingData, int epochs, int batchSize, float eta, boolean verbose) {
        // TODO
 
        // Partition training data into random batches of batchSize
@@ -101,7 +101,7 @@ public class Network {
 
        // Perform small gradient descent epoch times
        for (List<NumberImage> batch : batches)
-           learn_batch (batch);
+           learn_batch (batch, eta);
        // TODO
    }
 
@@ -109,23 +109,57 @@ public class Network {
      * Perform a SGD for a randomly partitioned training subset
      * @param batch a randomly partitioned set of trials
      */
-   private void learn_batch (List<NumberImage> batch) {
+   private void learn_batch (List<NumberImage> batch, float eta) {
        // TODO
        // For each of the tests in the batch
        for (NumberImage x : batch) {
            // 1. Set the input layer and propagate
            input (x.image);
-           // 2. Create arrays of the activations
-           INDArray expected_activation = Nd4j.create (x.label, new int[] {x.label.length, 1});
-           List<INDArray> activations = new ArrayList<>();
-           System.out.println(activations);
-           // 3. Output delta^L
-           INDArray output_activation = getOutput();
-           INDArray deltaL = deltaL (output_activation, expected_activation);
-           System.out.println(deltaL);
-           // 4. Backpropagate
+           // 2. Backpropagate
+           backPropagate (x);
        }
+       // 3. Update the weights and biases
+       finalizeLearning (outputs, eta, batch.size());
+       for (List<Neuron> layer : hidden)
+           finalizeLearning (layer, eta, batch.size());
+   }
 
+   private void backPropagate (NumberImage x) {
+       // 1. Compute the error in the output layer
+       INDArray expected_activation = Nd4j.create (x.label, new int[] {x.label.length, 1});
+       INDArray output_activation   = getOutput ();
+       INDArray delta               = deltaL (output_activation, expected_activation);
+       // 2. Backpropagate to earlier layers by setting bias updates and weight updates
+       setLayerBiasUpdate (outputs, delta);
+       setLayerWeightUpdate (outputs, delta);
+       for (List<Neuron> layer : hidden) {
+           delta = updateDelta  (layer, delta);
+           setLayerBiasUpdate   (layer, delta);
+           setLayerWeightUpdate (layer, delta);
+       }
+   }
+
+   private void setLayerBiasUpdate (List<Neuron> layer, INDArray bias) {
+       // TODO
+   }
+
+   private void setLayerWeightUpdate (List<Neuron> layer, INDArray bias) {
+       // TODO
+   }
+
+   private INDArray updateDelta (List<Neuron> layer, INDArray old_delta) {
+       return old_delta; // TODO stub
+   }
+
+   private void finalizeLearning (List<Neuron> layer, float eta, int batchSize) {
+       for (Neuron n : layer) {
+           n.setBias(n.getBias() - (eta/batchSize * n.getBiasUpdate()));
+           for (Synapse s : n.getSynapsesOntoThis()) {
+               s.setWeight(s.getWeight() - (eta/batchSize * s.getWeightUpdate()));
+               s.zeroWeightUpdate();
+           }
+           n.zeroBiasUpdate();
+       }
    }
 
 
@@ -197,6 +231,8 @@ public class Network {
            arr.put (i, 1, layer.get(i).getOutputtingSignal());
        return arr;
    }
+
+
 
 
 }

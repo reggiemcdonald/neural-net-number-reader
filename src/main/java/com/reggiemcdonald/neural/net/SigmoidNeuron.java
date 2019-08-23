@@ -12,7 +12,7 @@ public class SigmoidNeuron implements Neuron, SigmoidShaped  {
 
     private float outputtingSignal;
     private List<Synapse> receiving, sending;
-    private float bias;
+    private float bias, biasUpdate = 0f;
 
     public SigmoidNeuron () {
         Random r  = new Random ();
@@ -53,6 +53,26 @@ public class SigmoidNeuron implements Neuron, SigmoidShaped  {
     }
 
     @Override
+    public void setBias (float bias) {
+        this.bias = bias;
+    }
+
+    @Override
+    public void addBiasUpdate(float biasUpdate) {
+        this.biasUpdate += biasUpdate;
+    }
+
+    @Override
+    public float getBiasUpdate () {
+        return this.biasUpdate;
+    }
+
+    @Override
+    public void zeroBiasUpdate () {
+        this.biasUpdate = 0;
+    }
+
+    @Override
     public Neuron addSynapseOntoThis (Synapse s) {
         if (!receiving.contains(s)) {
             receiving.add (s);
@@ -68,6 +88,16 @@ public class SigmoidNeuron implements Neuron, SigmoidShaped  {
             s.getReceivingNeuron().addSynapseOntoThis(s);
         }
         return this;
+    }
+
+    @Override
+    public List<Synapse> getSynapsesOntoThis() {
+        return receiving;
+    }
+
+    @Override
+    public List<Synapse> getSynapsesFromThis() {
+        return sending;
     }
 
     @Override

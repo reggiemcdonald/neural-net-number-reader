@@ -2,21 +2,21 @@ package com.reggiemcdonald.neural.net;
 
 public class Synapse {
     private Neuron from, to;
-    private float weight;
+    private float weight, weightUpdate;
     private int index;
     private boolean updated;
 
     public Synapse (Neuron from, Neuron to, float weight) {
-        this.from    = from;
-        this.to      = to;
-        this.weight  = weight;
-        this.updated = false;
+        this.from         = from;
+        this.to           = to;
+        this.weight       = weight;
+        this.weightUpdate = 0;
+        this.updated      = false;
     }
 
     public Neuron getSendingNeuron () {
         return this.from;
     }
-
 
     public Neuron getReceivingNeuron () {
         return this.to;
@@ -43,4 +43,10 @@ public class Synapse {
     public void setUpdated (boolean val) {
         this.updated = val;
     }
+
+    public float getWeightUpdate () { return this.weightUpdate; }
+
+    public void addWeightUpdate (float weightUpdate) { this.weightUpdate += weightUpdate; }
+
+    public void zeroWeightUpdate () { this.weightUpdate = 0; }
 }
