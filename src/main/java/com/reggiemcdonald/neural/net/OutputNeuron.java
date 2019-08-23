@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class OutputNeuron implements Neuron {
+public class OutputNeuron implements Neuron, SigmoidShaped {
     List<Synapse> receiving;
     float outputtingSignal, bias;
 
@@ -16,7 +16,7 @@ public class OutputNeuron implements Neuron {
         Random r = new Random();
         receiving = new ArrayList<> ();
         outputtingSignal = (float) r.nextGaussian();
-        bias = 1;
+        bias = (float) r.nextGaussian();
     }
 
     @Override
@@ -30,6 +30,7 @@ public class OutputNeuron implements Neuron {
         return this;
     }
 
+    @Override
     public float sigmoid() {
         INDArray nd = Transforms.sigmoid (
                 getWeights ()
@@ -38,6 +39,11 @@ public class OutputNeuron implements Neuron {
 
         );
         return nd.getFloat(new int[]{0,0});
+    }
+
+    @Override
+    public INDArray zed () {
+        return getWeights().mmul(getInputs()).add (bias);
     }
 
     @Override

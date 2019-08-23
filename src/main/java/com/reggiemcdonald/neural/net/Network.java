@@ -1,13 +1,18 @@
 package com.reggiemcdonald.neural.net;
 
 import com.reggiemcdonald.neural.res.NumberImage;
+import org.nd4j.linalg.api.buffer.DataType;
+import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.factory.Nd4j;
+import org.nd4j.linalg.ops.transforms.Transforms;
 
 import java.util.*;
 
 public class Network {
    private int layers;
    private int[] sizes;
-   private List<Neuron> inputs, outputs;
+   private List<Neuron> inputs;
+   private List<Neuron> outputs;
    private List<List<Neuron>> hidden;
 
    public Network (int[] sizes) {
@@ -95,6 +100,8 @@ public class Network {
        }
 
        // Perform small gradient descent epoch times
+       for (List<NumberImage> batch : batches)
+           learn_batch (batch);
        // TODO
    }
 
@@ -105,10 +112,20 @@ public class Network {
    private void learn_batch (List<NumberImage> batch) {
        // TODO
        // For each of the tests in the batch
-       // 1. Set the input layer
-       // 2. Propagate
-       // 3. Output S^L
-       // 4. Backpropagate
+       for (NumberImage x : batch) {
+           // 1. Set the input layer and propagate
+           input (x.image);
+           // 2. Create arrays of the activations
+           INDArray expected_activation = Nd4j.create (x.label, new int[] {x.label.length, 1});
+           List<INDArray> activations = new ArrayList<>();
+           System.out.println(activations);
+           // 3. Output delta^L
+           INDArray output_activation = getOutput();
+           INDArray deltaL = deltaL (output_activation, expected_activation);
+           System.out.println(deltaL);
+           // 4. Backpropagate
+       }
+
    }
 
 
@@ -128,6 +145,58 @@ public class Network {
        return idx;
    }
 
+   public INDArray getOutput () {
+       float [] o = new float[outputs.size()];
+       int i = 0;
+       for (Neuron n : outputs) {
+           o[i] = n.getOutputtingSignal();
+           i++;
+       }
+       return Nd4j.create (o, new int[] {o.length,1});
+   }
+
+   private INDArray deltaL (INDArray output_activation, INDArray expected_activation) {
+       // delta^L = (a^L - y) Hadamard Prod. sigmoid_prime (z^L)
+       // where z^L is a
+       INDArray cost_derivative = getCostDerivative (output_activation, expected_activation); // (a^L - y)
+       INDArray zL              = getZedL ();
+       return cost_derivative.mul (
+               Transforms
+                       .sigmoidDerivative (zL)
+                       .castTo (DataType.FLOAT)
+       );
+
+   }
+
+    /**
+     * Compute the error
+     * @param output_activation
+     * @param expected_activation
+     * @return
+     */
+   private INDArray getCostDerivative (INDArray output_activation, INDArray expected_activation) {
+       return output_activation.sub (expected_activation);
+   }
+
+   private INDArray getZedL () {
+       List<INDArray> zeds = new ArrayList<>();
+       for (Neuron n : outputs) {
+           SigmoidShaped s = (SigmoidShaped) n;
+           zeds.add(s.zed());
+       }
+       return Nd4j.create (zeds, new int[]{zeds.size(),1});
+   }
+
+    /**
+     * @param layer a list of disjoint neurons representing a single layer
+     * @return a vector of neuronal activations
+     */
+   private INDArray getLayerActivationArray (List<Neuron> layer) {
+       INDArray arr = Nd4j.create (layer.size(), 1);
+       for (int i = 0; i < layer.size(); i++)
+           arr.put (i, 1, layer.get(i).getOutputtingSignal());
+       return arr;
+   }
 
 
 }

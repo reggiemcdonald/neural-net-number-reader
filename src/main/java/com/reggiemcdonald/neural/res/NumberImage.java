@@ -2,11 +2,11 @@ package com.reggiemcdonald.neural.res;
 
 public class NumberImage {
     public float[][] image;
-    public boolean[] label;
+    public float[] label;
 
     public NumberImage (float[][] image, int label) {
         this.image = image;
-        this.label = new boolean[10];
-        this.label[label] = true;
+        this.label = new float[10];
+        this.label[label] = 1f;
     }
 }
