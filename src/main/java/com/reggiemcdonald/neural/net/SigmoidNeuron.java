@@ -102,12 +102,7 @@ public class SigmoidNeuron implements Neuron, SigmoidShaped  {
 
     @Override
     public float sigmoid () {
-        INDArray nd = Transforms.sigmoid (
-                getWeights ()
-                        .mmul(getInputs())
-                        .add (bias)
-
-        );
+        INDArray nd = Transforms.sigmoid (zed ());
 //        System.out.println(nd);
         return nd.getFloat(new int[]{0,0});
     }

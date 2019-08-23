@@ -70,7 +70,7 @@ public class Network {
        for (int x = 0; x < input.length; x++) {
            for (int y = 0; y < input[x].length; y++) {
                int index = (input[y].length * x) + y;
-               inputs.get(index).setOutputtingSignal(input[x][y]).propagate();
+               inputs.get(index).setOutputtingSignal(input[x][y] / 255).propagate();
            }
        }
    }
@@ -98,11 +98,24 @@ public class Network {
            }
            batches.add (batch);
        }
-
+       System.out.println("Before training");
+       test (trainingData);
        // Perform small gradient descent epoch times
-       for (List<NumberImage> batch : batches)
-           learn_batch (batch, eta);
-       // TODO
+       int count = 1;
+       for (int i = 1; i <= epochs; i++) {
+           System.out.println("Beginning epoch " + i);
+//           int bnum = 1;
+           for (List<NumberImage> batch : batches) {
+//               System.out.println("Beginning batch " + bnum + " out of " + batches.size());
+               learn_batch(batch, eta);
+//               bnum++;
+           }
+           test (trainingData);
+       }
+//       print (inputs);
+//       for (List<Neuron> layer : hidden)
+//           print (layer);
+//       print (outputs);
    }
 
     /**
@@ -127,28 +140,48 @@ public class Network {
    private void backPropagate (NumberImage x) {
        // 1. Compute the error in the output layer
        INDArray expected_activation = Nd4j.create (x.label, new int[] {x.label.length, 1});
-       INDArray output_activation   = getOutput ();
+       INDArray output_activation   = getOutputINDArray();
        INDArray delta               = deltaL (output_activation, expected_activation);
        // 2. Backpropagate to earlier layers by setting bias updates and weight updates
+       // Start with the output layer
+       INDArray layer_weights = getLayerWeights (outputs);
+       INDArray layer_activation, input_activations;
+       input_activations = getLayerActivationArray (hidden.get (hidden.size () - 1));
        setLayerBiasUpdate (outputs, delta);
-       setLayerWeightUpdate (outputs, delta);
-       for (List<Neuron> layer : hidden) {
-           delta = updateDelta  (layer, delta);
+       setLayerWeightUpdate (outputs, delta, input_activations);
+
+
+       // Radiate towards the input layer
+       for (int i = hidden.size()-1; i > -1; i--) {
+           List<Neuron> layer = hidden.get(i);
+           layer_activation = getLayerActivationArray (layer);
+           input_activations = getLayerActivationArray(i == 0 ? inputs : hidden.get (i-1));
+           delta            = updateDelta (delta, layer_activation, layer_weights);
+           layer_weights    = getLayerWeights (layer);
            setLayerBiasUpdate   (layer, delta);
-           setLayerWeightUpdate (layer, delta);
+           setLayerWeightUpdate (layer, delta, input_activations);
        }
    }
 
-   private void setLayerBiasUpdate (List<Neuron> layer, INDArray bias) {
-       // TODO
+   private void setLayerBiasUpdate (List<Neuron> layer, INDArray delta) {
+       for (int i = 0; i < layer.size(); i++)
+           layer.get(i).addBiasUpdate(delta.getFloat(i,1));
    }
 
-   private void setLayerWeightUpdate (List<Neuron> layer, INDArray bias) {
-       // TODO
+   private void setLayerWeightUpdate (List<Neuron> layer, INDArray delta, INDArray input_activations) {
+       INDArray weightUpdate     = delta.mmul(input_activations.transpose());
+       int neuron_num = 0;
+       for (Neuron n : layer) {
+           List<Synapse> synapses = n.getSynapsesOntoThis();
+           for (int i = 0; i < synapses.size(); i++)
+               synapses.get(i).addWeightUpdate(weightUpdate.getFloat(neuron_num,i));
+           neuron_num++;
+       }
    }
 
-   private INDArray updateDelta (List<Neuron> layer, INDArray old_delta) {
-       return old_delta; // TODO stub
+   private INDArray updateDelta (INDArray old_delta, INDArray layer_activation, INDArray layer_weights) {
+        INDArray sigmoid_prime = Transforms.sigmoidDerivative (layer_activation);
+        return layer_weights.transpose().mmul (old_delta).mul  (sigmoid_prime);
    }
 
    private void finalizeLearning (List<Neuron> layer, float eta, int batchSize) {
@@ -166,26 +199,30 @@ public class Network {
     /**
      * @return the index of the most activated neuron
      */
-   public int getResult () {
+   public int getResult (float[] arr) {
        int idx = 0;
-       float max_signal = outputs.get(0).getOutputtingSignal();
-       for (int i = 0; i < outputs.size(); i++) {
-           Neuron n = outputs.get(i);
-           if (max_signal < n.getOutputtingSignal()) {
+       float max_signal = Float.MIN_VALUE;
+       for (int i = 0; i < arr.length; i++) {
+           if (arr[i] > max_signal) {
                idx = i;
-               max_signal = n.getOutputtingSignal();
+               max_signal = arr[i];
            }
        }
        return idx;
    }
 
-   public INDArray getOutput () {
+   public float[] getOutput () {
        float [] o = new float[outputs.size()];
        int i = 0;
        for (Neuron n : outputs) {
            o[i] = n.getOutputtingSignal();
            i++;
        }
+       return o;
+   }
+
+   public INDArray getOutputINDArray() {
+       float [] o = getOutput();
        return Nd4j.create (o, new int[] {o.length,1});
    }
 
@@ -232,7 +269,46 @@ public class Network {
        return arr;
    }
 
+   private INDArray getLayerWeights (List<Neuron> layer) {
+       List<INDArray> weights = new ArrayList<>(layer.size());
+       int rows = 0;
+       for (Neuron n : layer) {
+           List<Synapse> synapses = n.getSynapsesOntoThis();
+           INDArray weight = getWeights (synapses);
+           rows = weight.rows();
+           weights.add(weight);
+       }
+       return Nd4j.create (weights, new int[]{layer.size(),rows});
+   }
 
+    private INDArray getWeights (List<Synapse> synapses) {
+        INDArray arr = Nd4j.create (synapses.size(), 1);
+        for (int i = 0; i < synapses.size(); i++)
+            arr.put (i, 1, synapses.get(i).getWeight());
+        return arr;
+    }
 
+    public void print (List<Neuron> layer) {
+        System.out.println("===== Layer =====");
+        for (Neuron n : layer) {
+            System.out.println("Neuron bias: " + n.getBias());
+            List<Synapse> synapses = n.getSynapsesFromThis();
+            for (Synapse s : synapses)
+                System.out.println("     Synapse weight: " + s.getWeight());
+        }
+        System.out.println("===== END Layer =====");
+    }
+
+    public void test (List<NumberImage> data) {
+       int correct = 0, idx = 0, out_of = data.size();
+       for (NumberImage x : data) {
+//           System.out.println("Testing " + idx);
+           input (x.image);
+           if (getResult(getOutput()) == getResult(x.label))
+               correct++;
+           idx++;
+       }
+        System.out.println(correct + " correct, out of " + out_of);
+    }
 
 }
