@@ -4,8 +4,7 @@
     <list default="true" id="b835272f-9624-40ae-8c02-285edabccfde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/SigmoidNeuron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/SigmoidNeuron.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/reggiemcdonald/neural/net/Network.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/reggiemcdonald/neural/net/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/reggiemcdonald/neural/net/Network.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -25,10 +24,10 @@
     <session id="1499413169">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.1" value="2" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -47,15 +46,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="29161" />
-          <entry key="txt" value="296" />
+          <entry key="java" value="29337" />
+          <entry key="txt" value="339" />
           <entry key="xml" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="29161" />
-          <entry key="PLAIN_TEXT" value="296" />
+          <entry key="JAVA" value="29337" />
+          <entry key="PLAIN_TEXT" value="339" />
           <entry key="XML" value="40" />
         </counts>
       </usages-collector>
@@ -66,7 +65,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/SigmoidNeuron.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
+            <state relative-caret-position="1140">
               <caret line="94" selection-start-line="94" selection-end-line="94" />
               <folding>
                 <element signature="e#2273#2274#0" expanded="true" />
@@ -75,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="100" column="42" selection-start-line="100" selection-start-column="42" selection-end-line="100" selection-end-column="42" />
+            <state relative-caret-position="2085">
+              <caret line="178" column="72" selection-start-line="178" selection-start-column="72" selection-end-line="178" selection-end-column="72" />
               <folding>
                 <element signature="method#Network#0;class#Network#0" />
                 <element signature="method#buildNetwork#0;class#Network#0" />
@@ -109,7 +108,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/OutputNeuron.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
+            <state relative-caret-position="1005">
               <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -136,11 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/reggiemcdonald/neural/ImageLoaderTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+            <state relative-caret-position="210">
+              <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -189,8 +188,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/OutputNeuron.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/InputNeuron.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/SigmoidNeuron.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/reggiemcdonald/neural/ImageLoaderTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/reggiemcdonald/neural/ImageLoaderTest.java" />
       </list>
     </option>
   </component>
@@ -217,7 +216,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="634" />
     <option name="height" value="800" />
   </component>
@@ -227,8 +226,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -309,6 +306,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -460,48 +459,55 @@
       <option name="project" value="LOCAL" />
       <updated>1566543376181</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="is now learning I think">
+      <created>1566599243448</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1566599243448</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 12h 50m 18s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 17h 44m 17s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 13h 04m 20s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 17h 44m 47s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 13h 05m 36s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 23h 08m 45s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 13h 06m 53s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.24 at 08h 23m 46s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 13h 14m 42s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.24 at 08h 24m 09s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 13h 16m 07s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.24 at 08h 25m 13s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 13h 17m 22s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.24 at 08h 26m 13s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 13h 21m 15s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.24 at 09h 16m 38s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 14h 13m 37s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.24 at 09h 42m 37s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.23 at 15h 11m 21s.xml">
+    <history-entry file="ImageLoaderTest_testLoadTestImages - 2019.08.27 at 12h 57m 51s.xml">
       <configuration name="ImageLoaderTest.testLoadTestImages" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="Designer" order="1" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.21405493" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.21728595" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Problems" order="0" weight="0.32876712" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32876712" />
@@ -559,7 +565,8 @@
     <MESSAGE value="Began implementation of SGD" />
     <MESSAGE value="sigmoid prime" />
     <MESSAGE value="added additional learning implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="added additional learning implementation" />
+    <MESSAGE value="is now learning I think" />
+    <option name="LAST_COMMIT_MESSAGE" value="is now learning I think" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test/java/com/reggiemcdonald/neural/AppTest.java">
@@ -597,6 +604,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/runners/ParentRunner.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="155" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/SigmoidNeuron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="e#2273#2274#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2085">
+          <caret line="178" column="72" selection-start-line="178" selection-start-column="72" selection-end-line="178" selection-end-column="72" />
+          <folding>
+            <element signature="method#Network#0;class#Network#0" />
+            <element signature="method#buildNetwork#0;class#Network#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/res/NumberImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/InputNeuron.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -606,7 +655,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/OutputNeuron.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
+        <state relative-caret-position="1005">
           <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -635,54 +684,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/runners/ParentRunner.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="155" selection-start-line="155" selection-end-line="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/SigmoidNeuron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
-          <folding>
-            <element signature="e#2273#2274#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/reggiemcdonald/neural/ImageLoaderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        <state relative-caret-position="210">
+          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/res/NumberImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/reggiemcdonald/neural/net/Network.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="100" column="42" selection-start-line="100" selection-start-column="42" selection-end-line="100" selection-end-column="42" />
-          <folding>
-            <element signature="method#Network#0;class#Network#0" />
-            <element signature="method#buildNetwork#0;class#Network#0" />
           </folding>
         </state>
       </provider>

@@ -110,8 +110,10 @@ public class Network {
                learn_batch(batch, eta);
 //               bnum++;
            }
-           test (trainingData);
+//           test (trainingData);
        }
+       System.out.println("After training");
+       test (trainingData);
 //       print (inputs);
 //       for (List<Neuron> layer : hidden)
 //           print (layer);
@@ -301,12 +303,13 @@ public class Network {
 
     public void test (List<NumberImage> data) {
        int correct = 0, idx = 0, out_of = data.size();
+        System.out.println("Testing...");
        for (NumberImage x : data) {
 //           System.out.println("Testing " + idx);
            input (x.image);
            if (getResult(getOutput()) == getResult(x.label))
                correct++;
-           idx++;
+//           idx++;
        }
         System.out.println(correct + " correct, out of " + out_of);
     }
